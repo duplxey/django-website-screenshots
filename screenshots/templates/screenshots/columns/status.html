@@ -1,0 +1,7 @@
+<span
+    class="badge {% if record.status == 'SU' %}text-bg-success{% elif record.status == 'FA' %}text-bg-danger{% else %}text-bg-warning{% endif %}"
+    data-status
+    role="status"
+>
+    {{ record.get_status_display }}
+</span>

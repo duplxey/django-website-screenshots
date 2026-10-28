@@ -1,0 +1,9 @@
+Django==6.1.2
+Pillow==13.0.0
+celery[redis]==5.6.3
+redis==6.4.0
+playwright==1.64.1
+django-tables2==3.0.1
+django-crispy-forms==2.7
+crispy-bootstrap5==2026.9
+

@@ -1,0 +1,12 @@
+<a
+    class="btn btn-sm btn-outline-primary text-nowrap"
+    data-file-link
+    {% if record.file %}href="{{ record.file.url }}"{% else %}hidden{% endif %}
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    View image
+</a>
+<span class="small text-body-secondary" data-file-placeholder {% if record.file %}hidden{% endif %}>
+    {% if record.status == 'FA' %}Capture failed.{% else %}Capturing…{% endif %}
+</span>
