@@ -3,8 +3,8 @@ from django.db import models
 TYPE_VIEWPORT = "VP"
 TYPE_FULL_PAGE = "FP"
 TYPE_CHOICES = {
-    TYPE_VIEWPORT: "Viewport",
     TYPE_FULL_PAGE: "Full page",
+    TYPE_VIEWPORT: "Viewport",
 }
 
 STATUS_PENDING = "PE"
@@ -19,7 +19,7 @@ STATUS_CHOICES = {
 
 class Screenshot(models.Model):
     url = models.URLField()
-    type = models.CharField(max_length=2, choices=TYPE_CHOICES, default=TYPE_VIEWPORT)
+    type = models.CharField(max_length=2, choices=TYPE_CHOICES, default=TYPE_FULL_PAGE)
     file = models.ImageField(upload_to="screenshots/", null=True, blank=True, default=None)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=STATUS_PENDING)
     created_at = models.DateTimeField(auto_now_add=True)

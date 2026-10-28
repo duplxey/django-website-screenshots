@@ -10,7 +10,7 @@ from .models import STATUS_FAILED, STATUS_SUCCESS, Screenshot
 
 
 @shared_task
-def capture_screenshot(screenshot_id, url, full_page=False):
+def capture_screenshot(screenshot_id, url, full_page=True):
     screenshot = Screenshot.objects.get(pk=screenshot_id)
 
     try:
@@ -36,7 +36,6 @@ def capture_screenshot(screenshot_id, url, full_page=False):
         Screenshot.objects.filter(pk=screenshot_id).update(
             status=STATUS_FAILED, updated_at=timezone.now()
         )
-        # Raising also marks the Celery task as FAILURE instead of SUCCESS.
         raise
 
     return screenshot.file.name

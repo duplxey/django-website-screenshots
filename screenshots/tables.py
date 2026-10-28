@@ -7,22 +7,18 @@ from .models import Screenshot
 class ScreenshotTable(tables.Table):
     url = tables.URLColumn(
         verbose_name="Website",
-        attrs={
-            "a": {
-                "target": "_blank",
-                "rel": "noopener noreferrer",
-                "class": "text-break",
-            }
-        },
+        attrs={"a": {
+            "target": "_blank",
+            "rel": "noopener noreferrer",
+            "class": "text-break",
+        }},
     )
     status = tables.TemplateColumn(template_name="screenshots/columns/status.html")
     file = tables.TemplateColumn(
-        template_name="screenshots/columns/file.html",
-        verbose_name="Screenshot",
+        template_name="screenshots/columns/file.html", verbose_name="Screenshot",
     )
     created_at = tables.DateTimeColumn(
-        format="M j, Y, H:i",
-        verbose_name="Created",
+        format="M j, Y, H:i", verbose_name="Created",
         attrs={
             "th": {"class": "d-none d-md-table-cell"},
             "td": {"class": "d-none d-md-table-cell text-nowrap"},
