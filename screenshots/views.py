@@ -11,7 +11,7 @@ from kombu.exceptions import OperationalError
 from .forms import ScreenshotForm
 from .models import STATUS_FAILED, TYPE_FULL_PAGE, Screenshot
 from .tables import ScreenshotTable
-from .tasks import capture_screenshot
+from .tasks import capture_screenshot_task
 
 logger = logging.getLogger(__name__)
 
@@ -22,9 +22,12 @@ def index_view(request):
 
     if request.method == "POST" and form.is_valid():
         screenshot = form.save()
-        full_page = screenshot.type == TYPE_FULL_PAGE
         try:
-            capture_screenshot.delay(screenshot.pk, screenshot.url, full_page=full_page)
+            capture_screenshot_task.delay(
+                screenshot.pk,
+                screenshot.url,
+                full_page=screenshot.type == TYPE_FULL_PAGE,
+            )
         except OperationalError:
             Screenshot.objects.filter(pk=screenshot.pk).update(
                 status=STATUS_FAILED, updated_at=timezone.now()
