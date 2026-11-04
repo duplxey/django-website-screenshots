@@ -4,7 +4,7 @@ A simple website screenshot application written in Django, with Celery for backg
 
 ## Want to learn how to build this?
 
-Read the [article](#).
+Read the [article](https://testdriven.io/blog/django-website-screenshots/).
 
 ## Want to use this project?
 
